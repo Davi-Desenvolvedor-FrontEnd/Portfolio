@@ -1,0 +1,239 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+
+:root {
+  --background-primary: #000814;
+  --background-secondary: #001d3d;
+  --text-primary: #001233;
+  --text-secondary: #00b4d8;
+
+  --light: #ffffff;
+  --dark: #2c2c2c;
+
+  --font-title: "Orbitron", sans-serif;
+  --font-text: "Space Grotesk", sans-serif;
+
+  --xs: 0.5em;
+  --sm: 1em;
+  --md: 2em;
+  --xl: 4em;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  color: var(--text-primary);
+}
+
+h1,
+h2 {
+  font-family: var(--font-title);
+  background: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--text-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+p {
+  font-family: var(--font-text);
+  color: var(--light);
+}
+
+.container {
+  background-color: var(--background-primary);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 100px;
+  box-shadow: 0 4px 8px var(--background-secondary);
+  background-color: rgba(0, 8, 20, 0.9);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100px;
+
+  h1 {
+    font-size: var(--md);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+    font-family: var(--font-title);
+  }
+
+  menu {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      > a {
+        color: var(--light);
+        font-size: 1.2em;
+        text-decoration: none;
+        position: relative;
+        font-family: var(--font-text);
+
+        &:hover::after {
+          transform: scaleX(1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          height: 1px;
+          width: 100%;
+          left: 0;
+          bottom: -4px;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.4s ease;
+          background-color: var(--light);
+        }
+      }
+    }
+
+    .theme {
+      display: flex;
+      font-size: 1.5em;
+      align-items: center;
+
+      i {
+        transform: rotate(0);
+        transition: all 0.4s ease;
+        color: var(--light);
+
+        &:hover {
+          transform: rotate(45deg) scale(0.9);
+          color: var(--text-secondary);
+        }
+      }
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  section {
+    width: 70%;
+    border: 2px dashed red;
+    padding: 20px 40px;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      h2 {
+        font: 600 var(--xl)/normal var(--font-title);
+      }
+
+      p {
+        width: 50%;
+      }
+
+      .links {
+        gap: 20px;
+        display: flex;
+
+        .social-media {
+          color: var(--light);
+          border: 1px solid var(--dark);
+          border-radius: 30px;
+          display: flex;
+          gap: 10px;
+          padding: 6px 20px;
+          text-decoration: none;
+          font-size: var(--sm);
+          align-items: center;
+          justify-content: center;
+          transition: all .3s ease;
+
+          i {
+            font-size: var(--md);
+          }
+
+          &:hover {
+            background-color: #00b4d86b;
+          }
+        }
+      }
+    }
+
+    .image-profile {
+      width: 450px;
+      overflow: hidden;
+      border-radius: 100%;
+      box-shadow: 1px 1px 48px var(--background-secondary);
+      animation: image-profile 6s ease-in-out infinite;
+
+      img {
+        aspect-ratio: 9/9;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  min-height: 100px;
+  border: 2px dashed green;
+  background-color: var(--background-primary);
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes image-profile {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
