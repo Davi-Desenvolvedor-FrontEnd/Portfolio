@@ -3,13 +3,15 @@
 
 :root {
   --background-primary: #000814;
-  --background-secondary: #001d3d;
-  --background-terciary: #00b4d8;
+  --background-secondary: #001429;
+  --background-terciary: #0080af;
   --text-primary: #ffffff;
   --text-secondary: #dddddd;
 
   --light: #fff;
   --dark: #000;
+
+  --shadow: rgb(0, 0, 0, 0.3);
 
   --font-title: "Orbitron", sans-serif;
   --font-text: "Space Grotesk", sans-serif;
@@ -39,10 +41,14 @@ h2 {
   font-family: var(--font-title);
 }
 
+h2 {
+  font-size: clamp(calc(var(--sm) + 12px), 3vw, var(--xl));
+}
+
 h3 {
   font-family: var(--font-title);
   color: var(--text-primary);
-  font-size: var(--md);
+  font-size: clamp(calc(var(--sm) + 10px), 1.5vw, var(--md));
   letter-spacing: 1.1px;
 
   &::after {
@@ -65,6 +71,7 @@ p {
   background-color: var(--background-primary);
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   padding-top: 100px;
@@ -72,38 +79,60 @@ p {
 
 header {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  padding: 20px 100px;
-  background-color: rgba(var(--background-primary), 0.8);
   position: fixed;
   top: 0;
   z-index: 100;
   width: 100%;
-  height: 100px;
-  backdrop-filter: blur(15px);
+  min-height: 100px;
+  backdrop-filter: blur(12px);
+  padding: 1em;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    gap: 50px;
+  }
 
   h1 {
-    font-size: var(--md);
+    font-size: clamp(var(--sm), 1.5vw, var(--md));
     display: flex;
     align-items: center;
     gap: 20px;
     font-weight: 500;
     font-family: var(--font-title);
-    background: linear-gradient(
-      to right,
-      var(--background-secondary),
-      var(--text-secondary)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--text-primary);
+  }
+
+  .title-menu {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 720px) {
+      width: 100%;
+      gap: 50px;
+      justify-content: space-evenly;
+    }
+  }
+
+  #menuIcon {
+    display: none;
+
+    @media (max-width: 720px) {
+      display: flex;
+    }
   }
 
   menu {
     display: flex;
     align-items: center;
     gap: 50px;
+
+    @media (max-width: 720px) {
+      display: none;
+      gap: 10px;
+    }
 
     nav {
       display: flex;
@@ -138,10 +167,10 @@ header {
 
     .theme {
       display: flex;
-      font-size: 1.5em;
+      font-size: clamp(var(--sm), 1.5vw, var(--md));
       align-items: center;
-      border: 1px solid var(--background-secondary);
-      border-radius: 16px;
+      border: 3px solid var(--background-terciary);
+      border-radius: var(--xs);
       padding: 10px 20px;
       transition: all 0.4s ease;
 
@@ -166,26 +195,39 @@ main {
   section {
     width: 80%;
     padding: 20px 40px;
-    margin: 100px 0;
+    margin: clamp(1rem, 5vw, 12.5rem) 0;
+
+    @media (max-width: 720px) {
+      width: 100%;
+    }
   }
 
   .about {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    margin-top: clamp(1em, 1.5vw, 100px);
+
+    @media (max-width: 720px) {
+      flex-direction: column;
+    }
 
     .about-content {
       display: flex;
       flex-direction: column;
       gap: 40px;
-      width: 70%;
+      width: 100%;
 
       h2 {
-        font: bold var(--xl)/normal var(--font-title);
+        text-shadow: 1px 1px 4px var(--background-terciary);
       }
 
       p {
         width: 70%;
+        @media (max-width: 720px) {
+          width: 100%;
+        }
       }
 
       .links {
@@ -200,7 +242,6 @@ main {
     }
 
     .image-container {
-      width: 30%;
       height: 100%;
       align-items: center;
       justify-content: center;
@@ -209,11 +250,19 @@ main {
       padding: 20px;
       gap: 20px;
 
-      .years-text {
-        font-weight: bold;
-        font-size: var(--sm);
-        color: var(--text-primary);
-        font-family: var(--font-text);
+      .information-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+
+        .information {
+          font-weight: 500;
+          font-size: var(--sm);
+          color: var(--text-primary);
+          font-family: var(--font-text);
+          border-radius: 12px;
+        }
       }
 
       .image-profile {
@@ -238,16 +287,22 @@ main {
   .projects {
     .projects-content {
       display: flex;
-      padding: 5px;
+      /* padding: 5px; */
       gap: 10px;
+
+      @media (max-width: 720px) {
+        flex-direction: column;
+      }
 
       .project-box {
         background-color: var(--background-secondary);
+        box-shadow: 1px 1px 8px var(--shadow);
         border-radius: 12px;
         padding: 10px 20px;
         display: flex;
         flex-direction: column;
-        width: 33%;
+        min-width: 33%;
+        width: 100%;
         transition: all 0.3s ease;
 
         &:hover {
@@ -277,7 +332,7 @@ main {
         .project-text {
           display: flex;
           flex-direction: column;
-          height: 300px;
+          height: 250px;
           width: 100%;
           padding: 10px 0;
           gap: 10px;
@@ -304,7 +359,7 @@ main {
               padding: 5px 12px;
               border-radius: 48px;
               background-color: var(--background-terciary);
-              color: var(--text-primary);
+              color: var(--light);
               font-family: var(--font-text);
               font-size: calc(var(--sm) - 2px);
             }
@@ -316,21 +371,21 @@ main {
             gap: 20px;
 
             button {
-              border-radius: 4em;
-              padding: 12px 28px;
-              font-size: calc(var(--sm) + 2px);
+              border-radius: var(--sm);
+              padding: 12px clamp(var(--sm), 1.5vw, var(--md));
+              font-size: clamp(var(--sm), 1.5vw, calc(var(--sm) + 2px));
               cursor: pointer;
               transition: transform 0.3s ease;
               font-family: var(--font-text);
+              font-weight: 700;
 
               &:hover {
                 transform: translateY(-5px);
               }
 
               &:first-child {
-                background-color: var(--background-primary);
-                box-shadow: 1px 1px 8px var(--background-secondary);
-                color: var(--text-primary);
+                background: linear-gradient(135deg, #240046, #0080af);
+                color: var(--light);
                 border: none;
               }
 
@@ -353,24 +408,25 @@ main {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      justify-content: space-between;
+      justify-content: center;
       margin-top: 25px;
 
       .skills-card {
-        border: 1px solid var(--background-secondary);
+        border: 1px solid var(--background-terciary);
         padding: 20px 40px;
         border-radius: 6px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 10px;
         font-weight: bold;
         transition: all 0.3s ease;
+        width: clamp(120px, 15vw, 200px);
 
         &:hover {
           transform: scale(1.05);
-          box-shadow: 1px 1px 8px var(--background-secondary);
+          box-shadow: 1px 1px 8px var(--shadow);
         }
 
         i {
@@ -384,23 +440,101 @@ main {
   .contact {
     .contact-content {
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
+      flex-direction: row;
+      justify-content: space-between;
       gap: 30px;
 
-      .contact-card {
-        display: flex;
-        gap: 20px;
-        align-items: center;
+      @media (max-width: 720px) {
+        flex-direction: column;
+      }
 
-        i {
-          background-color: var(--background-terciary);
-          border-radius: 50%;
-          padding: 10px 20px;
-          align-items: center;
-          justify-content: center;
+      .contact-card-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
+
+        .contact-card {
           display: flex;
-          font-size: var(--sm);
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+
+          i {
+            background-color: var(--background-terciary);
+            color: var(--light);
+            border-radius: 50%;
+            padding: 10px 20px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-size: var(--sm);
+          }
+        }
+      }
+
+      .contact-form {
+        min-width: 40%;
+
+        form {
+          width: 100%;
+          height: 100%;
+          background-color: var(--background-secondary);
+          box-shadow: 1px 1px 8px var(--shadow);
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: clamp(1em, 1.5vw, var(--xl));
+
+          input,
+          textarea {
+            background-color: var(--background-primary);
+            border-radius: 12px;
+            border: none;
+            padding: 20px 10px;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+
+            &:focus {
+              border: 1px solid var(--background-terciary);
+            }
+          }
+
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus,
+          textarea:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px var(--background-primary) inset;
+            -webkit-text-fill-color: var(--text-primary);
+            transition: background-color 9999s ease-in-out 0s;
+          }
+
+          textarea {
+            resize: none;
+            padding: 10px;
+            min-height: 200px;
+            max-height: 200px;
+          }
+
+          button {
+            padding: 20px;
+            margin-top: 20px;
+            border: none;
+            background: var(--background-terciary);
+            box-shadow: 1px 1px 4px var(--background-terciary);
+            border-radius: 16px;
+            color: var(--light);
+            font-size: var(--sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              transform: scale(1.05);
+            }
+          }
         }
       }
     }
@@ -413,6 +547,9 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  background-color: var(--background-secondary);
+  box-shadow: 1px 1px 8px var(--shadow);
 }
 
 @keyframes image-profile {

@@ -26,7 +26,10 @@
     <div class="container">
       <!-- cabeçalho -->
       <header>
-        <h1><i class="bi bi-code-slash"></i><span>Davi Augusto</span></h1>
+        <div class="title-menu">
+          <h1><i class="bi bi-code-slash"></i><span>Davi Augusto</span></h1>
+          <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </div>
         <menu>
           <nav>
             <a href="#about">Sobre</a>
@@ -34,14 +37,14 @@
             <a href="#skills">Habilidades</a>
             <a href="#contact">Contato</a>
           </nav>
-          <div class="theme">
+          <a class="theme" id="theme-color">
             <i class="bi bi-sun"></i>
-          </div>
+          </a>
         </menu>
       </header>
       <!-- conteúdo principal -->
       <main>
-        <section class="about">
+        <section class="about" id="about">
           <div class="about-content">
             <h2>Desenvolvedor Web & Mobile</h2>
             <p>
@@ -59,10 +62,13 @@
             <div class="image-profile">
               <img src="/images/image-profile.png" alt="Imagem de perfil" />
             </div>
-            <span id="years" class="years-text"></span>
+            <div class="information-content">
+              <span id="years" class="information"></span>
+              <span class="information"><i class="bi bi-dot"></i>Estudante de Ciência da Computação</span>
+            </div>
           </div>
         </section>
-        <section class="projects">
+        <section class="projects" id="projects">
           <h3>Meus Projetos</h3>
           <div class="projects-content">
             <div class="project-box">
@@ -119,7 +125,7 @@
             </div>
           </div>
         </section>
-        <section class="skills">
+        <section class="skills" id="skills">
           <h3>Tecnologias</h3>
           <div class="skills-content">
             <div class="skills-card">
@@ -152,27 +158,37 @@
             </div>
           </div>
         </section>
-        <section class="contact">
+        <section class="contact" id="contact">
           <h3>Entre em contato</h3>
           <div class="contact-content">
-            <div class="contact-card">
-              <i class="fa-solid fa-envelope"></i>
-              <p>daviprogramador194@gmail.com</p>
+            <div class="contact-card-box">
+              <div class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <p>daviprogramador194@gmail.com</p>
+              </div>
+              <div class="contact-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <p>(34) 98400-4492</p>
+              </div>
+              <div class="contact-card">
+                <i class="fa-brands fa-instagram"></i>
+                <p>@daviaugusto_desenvolvedor</p>
+              </div>
             </div>
-            <div class="contact-card">
-              <i class="fa-brands fa-whatsapp"></i>
-              <p>(34) 98400-4492</p>
-            </div>
-            <div class="contact-card">
-              <i class="fa-brands fa-instagram"></i>
-              <p>@daviaugusto_desenvolvedor</p>
+            <div class="contact-form">
+              <form action="https://formspree.io/f/xdalopej" method="post">
+                <input type="text" placeholder="Seu nome"/>
+                <input type="email" placeholder="Seu email"/>
+                <textarea placeholder="Assunto"></textarea>
+                <button type="submit">Enviar</button>
+              </form>
             </div>
           </div>
         </section>
       </main>
       <!-- rodapé -->
       <footer>
-          <p>&copy; Davi Augusto 2026, todos os direitos reservados</p>
+        <p>&copy; Davi Augusto 2026, todos os direitos reservados</p>
       </footer>
     </div>
     <script src="script.js"></script>
